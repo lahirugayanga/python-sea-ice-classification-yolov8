@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Upload and Prediction</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-between;
+      }
+      .column {
+        width: 30%;
+        padding: 10px;
+      }
+      .prediction-column {
+        width: 35%;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="column">
+        <h2>Upload Image for Model M1</h2>
+        <form
+          action="/prediction_m1"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input title="input" type="file" id="myFileM1" name="filename_m1" />
+          <input type="submit" value="Upload for M1" />
+        </form>
+        {% if image_url_m1 %}
+        <div class="prediction-column">
+          <h3>Prediction Result for M1</h3>
+          <img src="{{ image_url_m1 }}" alt="Prediction Image M1" />
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="column">
+        <h2>Upload Image for Model M2</h2>
+        <form
+          action="/prediction_m2"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input title="input" type="file" id="myFileM2" name="filename_m2" />
+          <input type="submit" value="Upload for M2" />
+        </form>
+        {% if image_url_m2 %}
+        <div class="prediction-column">
+          <h3>Prediction Result for M2</h3>
+          <img src="{{ image_url_m2 }}" alt="Prediction Image M2" />
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

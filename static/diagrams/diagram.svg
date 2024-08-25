@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 792 444" style="enable-background:new 0 0 792 444;" xml:space="preserve">
+<style type="text/css">
+	.st0{font-family:'MyriadPro-Regular';}
+	.st1{font-size:15px;}
+	.st2{fill:none;stroke:#000000;stroke-width:3;stroke-linecap:square;stroke-miterlimit:10;}
+	.st3{fill:#1C75BC;}
+	.st4{font-size:18px;}
+	.st5{fill:#00A14B;}
+	.st6{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st7{fill:none;}
+</style>
+<text transform="matrix(1 0 0 1 109.6452 108.6774)"><tspan x="0" y="0" class="st0 st1">Image </tspan><tspan x="-19.6" y="18" class="st0 st1">Classification</tspan><tspan x="-10.1" y="36" class="st0 st1">Module - I</tspan></text>
+<line class="st2" x1="323.5" y1="28.5" x2="710.5" y2="28.5"/>
+<line class="st2" x1="584.5" y1="252.5" x2="690.5" y2="252.5"/>
+<line class="st2" x1="323.5" y1="251.5" x2="323.5" y2="169.5"/>
+<g>
+	<g>
+		<line class="st2" x1="52.7" y1="125.4" x2="64.3" y2="125.4"/>
+		<g>
+			<path d="M71.5,125.4c-3.4,1.3-7.6,3.4-10.3,5.7l2.1-5.7l-2.1-5.7C63.9,122,68.1,124.1,71.5,125.4z"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st2" x1="323.5" y1="252.3" x2="462.3" y2="252.3"/>
+		<g>
+			<path d="M469.5,252.3c-3.4,1.3-7.6,3.4-10.3,5.7l2.1-5.7l-2.1-5.7C461.9,248.9,466.1,251,469.5,252.3z"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st2" x1="381.5" y1="123" x2="462.3" y2="123"/>
+		<g>
+			<path d="M469.5,123c-3.4,1.3-7.6,3.4-10.3,5.7l2.1-5.7l-2.1-5.7C461.9,119.6,466.1,121.8,469.5,123z"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st2" x1="650.5" y1="386.5" x2="589.7" y2="386.5"/>
+		<g>
+			<path d="M582.5,386.5c3.4-1.3,7.6-3.4,10.3-5.7l-2.1,5.7l2.1,5.7C590.1,389.9,585.9,387.8,582.5,386.5z"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st2" x1="467.5" y1="386.5" x2="387.7" y2="386.5"/>
+		<g>
+			<path d="M380.5,386.5c3.4-1.3,7.6-3.4,10.3-5.7l-2.1,5.7l2.1,5.7C388.1,389.9,383.9,387.8,380.5,386.5z"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st2" x1="189.6" y1="123" x2="259.3" y2="123"/>
+		<g>
+			<path d="M266.5,123c-3.4,1.3-7.6,3.4-10.3,5.7l2.1-5.7l-2.1-5.7C258.9,119.6,263.1,121.8,266.5,123z"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st2" x1="710.8" y1="28.5" x2="710.8" y2="69.3"/>
+		<g>
+			<path d="M710.8,76.5c-1.3-3.4-3.4-7.6-5.7-10.3l5.7,2.1l5.7-2.1C714.3,68.9,712.1,73.1,710.8,76.5z"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st2" x1="690.5" y1="252.5" x2="690.5" y2="334.3"/>
+		<g>
+			<path d="M690.5,341.5c-1.3-3.4-3.4-7.6-5.7-10.3l5.7,2.1l5.7-2.1C693.9,333.9,691.8,338.1,690.5,341.5z"/>
+		</g>
+	</g>
+</g>
+<g>
+	<g>
+		<line class="st2" x1="710.5" y1="168.5" x2="710.5" y2="334.3"/>
+		<g>
+			<path d="M710.5,341.5c-1.3-3.4-3.4-7.6-5.7-10.3l5.7,2.1l5.7-2.1C713.9,333.9,711.8,338.1,710.5,341.5z"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 302.4225 108.6775)"><tspan x="0" y="0" class="st0 st1">Image </tspan><tspan x="-19.6" y="18" class="st0 st1">Classification</tspan><tspan x="-11.9" y="36" class="st0 st1">Module - II</tspan></text>
+<text transform="matrix(1 0 0 1 496.7434 17.5876)" class="st0 st1">Ice Image</text>
+<text transform="matrix(1 0 0 1 412.9456 101.5876)"><tspan x="0" y="0" class="st0 st1">Ice</tspan><tspan x="-12.3" y="13" class="st0 st1"> Image</tspan></text>
+<text transform="matrix(1 0 0 1 601.5927 357.8114)"><tspan x="0" y="0" class="st0 st1">Track </tspan><tspan x="-5.8" y="18" class="st0 st1">in px/m</tspan></text>
+<text transform="matrix(1 0 0 1 409.5927 359.8114)"><tspan x="0" y="0" class="st0 st1">Track </tspan><tspan x="4.5" y="18" class="st0 st1">in m</tspan></text>
+<text transform="matrix(1 0 0 1 718.0326 238.8114)"><tspan x="0" y="0" class="st0 st1">Detected</tspan><tspan x="18.3" y="18" class="st0 st1">Ice </tspan><tspan x="12.6" y="36" class="st0 st1">Floes</tspan></text>
+<text transform="matrix(1 0 0 1 8.602 121.2218)"><tspan x="0" y="0" class="st0 st1">Image</tspan><tspan x="2.6" y="14" class="st0 st1"> Feed</tspan></text>
+<line class="st2" x1="323.5" y1="75.5" x2="323.5" y2="28.5"/>
+<text transform="matrix(1 0 0 1 498.0818 108.6774)"><tspan x="0" y="0" class="st0 st1">Semantic </tspan><tspan x="-13.8" y="18" class="st0 st1">Segmentation</tspan><tspan x="6.6" y="36" class="st0 st1">Module</tspan></text>
+<text transform="matrix(1 0 0 1 504.5659 238.4775)"><tspan x="0" y="0" class="st0 st1">Object</tspan><tspan x="-10" y="18" class="st0 st1">Detection</tspan><tspan x="-3.2" y="36" class="st0 st1">Module</tspan></text>
+<text transform="matrix(1 0 0 1 683.7077 108.6773)"><tspan x="0" y="0" class="st0 st1">Instance</tspan><tspan x="-18.1" y="18" class="st0 st1">Segmentation</tspan><tspan x="2.3" y="36" class="st0 st1">Module</tspan></text>
+<text transform="matrix(1 0 0 1 688.0432 372.6433)"><tspan x="0" y="0" class="st0 st1">Region</tspan><tspan x="-6.4" y="18" class="st0 st1">Tracking </tspan><tspan x="-2" y="36" class="st0 st1">Module</tspan></text>
+<text transform="matrix(1 0 0 1 504.5684 373.6433)"><tspan x="0" y="0" class="st0 st1">Metric </tspan><tspan x="-17.4" y="18" class="st0 st1">Ice Tracking </tspan><tspan x="-2.6" y="36" class="st0 st1">Module</tspan></text>
+<text transform="matrix(1 0 0 1 297.9937 363.6433)"><tspan x="0" y="0" class="st0 st1">Ice Load</tspan><tspan x="-9.1" y="18" class="st0 st1">Calculation</tspan><tspan x="2" y="36" class="st0 st1">Module</tspan><tspan x="7.2" y="54" class="st0 st1">(GEM)</tspan></text>
+<text transform="matrix(1 0 0 1 76.173 93.3468)" class="st3 st0 st4">[1]</text>
+<text transform="matrix(1 0 0 1 269.173 93.3468)" class="st3 st0 st4">[2]</text>
+<text transform="matrix(1 0 0 1 472.5063 93.3468)" class="st3 st0 st4">[3]</text>
+<text transform="matrix(1 0 0 1 654.173 93.3468)" class="st3 st0 st4">[4]</text>
+<text transform="matrix(1 0 0 1 471.5063 222.5968)" class="st3 st0 st4">[5]</text>
+<text transform="matrix(1 0 0 1 656.173 357.9301)" class="st3 st0 st4">[6]</text>
+<text transform="matrix(1 0 0 1 472.5063 355.9301)" class="st3 st0 st4">[7]</text>
+<text transform="matrix(1 0 0 1 270.173 357.9301)" class="st3 st0 st4">[8]</text>
+<text transform="matrix(1 0 0 1 389.9004 226.5746)"><tspan x="0" y="0" class="st0 st1">Object </tspan><tspan x="1.2" y="18" class="st0 st1">Image</tspan><tspan x="40.5" y="18" class="st5 st0 st1"> </tspan></text>
+<text transform="matrix(1 0 0 1 609.5254 226.5746)"><tspan x="0" y="0" class="st0 st1">Detected</tspan><tspan x="3.4" y="18" class="st0 st1">Objects</tspan><tspan x="51.1" y="18" class="st5 st0 st1"> </tspan></text>
+<text transform="matrix(1 0 0 1 198.3476 86.5746)"><tspan x="0" y="0" class="st0 st1">Forward </tspan><tspan x="0" y="14" class="st0 st1">Looking</tspan><tspan x="0" y="28" class="st0 st1">Images</tspan></text>
+<rect x="74" y="77" class="st6" width="113.6" height="90.5"/>
+<rect x="267" y="77" class="st6" width="113.6" height="90.5"/>
+<rect x="469.9" y="77" class="st6" width="113.6" height="90.5"/>
+<rect x="469.3" y="207" class="st6" width="113.6" height="90.5"/>
+<rect x="469.2" y="340.5" class="st6" width="113.6" height="90.5"/>
+<rect x="267" y="340.5" class="st6" width="113.6" height="90.5"/>
+<rect x="653.2" y="342" class="st6" width="113.6" height="90.5"/>
+<rect x="652.4" y="77" class="st6" width="113.6" height="90.5"/>
+<rect x="437.4" y="367" class="st7" width="5.1" height="0"/>
+</svg>
