@@ -124,4 +124,4 @@ def reset_m2():
     return render_template("index.html", image_url_m1=output_image_path_m1, image_url_m2=None)
 
 if __name__ == "__main__":
-    serve(app, host="0.0.0.0", port=8000)
+    serve(app, host="0.0.0.0", port=8080)
