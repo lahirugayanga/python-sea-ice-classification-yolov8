@@ -1,148 +1,63 @@
-from dotenv import load_dotenv
-from pprint import pprint
 import os
-from IPython import display
-from ultralytics import YOLO
-import os
-import glob
-import cv2
 import time
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
+import cv2
+from ultralytics import YOLO
+from threading import Lock
+_infer_lock = Lock()
+
+MODEL_M1_PATH = "models/best_m1_v2.pt"
+MODEL_M2_PATH = "models/best_m2_v1.pt"
+
+model_m1 = YOLO(MODEL_M1_PATH)
+model_m2 = YOLO(MODEL_M2_PATH)
+
+# filesystem output locations (relative to project root)
+OUT_M1_FS = os.path.join("static", "uploads", "m1", "output_image_m1.jpg")
+OUT_M2_FS = os.path.join("static", "uploads", "m2", "output_image_m2.jpg")
+
+# URL paths used by the browser
+OUT_M1_URL = "/static/uploads/m1/output_image_m1.jpg"
+OUT_M2_URL = "/static/uploads/m2/output_image_m2.jpg"
 
 
-def get_prediction_m1(image_file):
-    # Initialize the model
-    model_path = 'models/best_m1_v2.pt'  # Update with your actual path
-    model = YOLO(model_path)
+def _predict(model: YOLO, image_file: str, out_fs: str, out_url: str) -> str:
+    with _infer_lock:
+        start_time = time.time()
+        results = model(image_file, conf=0.5, iou=0.6, imgsz=640)
+        inference_time = time.time() - start_time
 
-    print(f"Processing {image_file}")
+        for result in results:
+            im_bgr = result.plot().copy()  # BGR
 
-    # Start timing the inference
-    start_time = time.time()
+            # Build text lines
+            lines = [f"Prediction Speed: {inference_time:.2f} s"]
+            if result.boxes is not None and len(result.boxes) > 0:
+                for cls_id, conf in zip(result.boxes.cls, result.boxes.conf):
+                    lines.append(f"{result.names[int(cls_id)]}: {float(conf):.2f}")
 
-    # Run inference
-    results = model(image_file, conf=0.5, iou=0.6, imgsz=640)
+            h, w = im_bgr.shape[:2]
+            font_scale = max(w / 1200.0, 0.5)
+            thickness = max(int(w / 600.0), 1)
 
-    # Calculate the inference speed
-    inference_time = time.time() - start_time
+            x, y0 = 10, max(h - 20 * len(lines), 30)
+            for i, line in enumerate(lines):
+                y = y0 + i * 20
+                cv2.putText(im_bgr, line, (x, y), cv2.FONT_HERSHEY_SIMPLEX,
+                            font_scale, (0, 0, 255), thickness, cv2.LINE_AA)
 
-    # Process results list
-    for result in results:
-        im_array = result.plot()  # plot a BGR numpy array of predictions
+            os.makedirs(os.path.dirname(out_fs), exist_ok=True)
+            ok = cv2.imwrite(out_fs, im_bgr)
+            if not ok:
+                raise RuntimeError(f"cv2.imwrite failed for path: {out_fs}")
 
-        # Extract class probabilities if result.boxes is not None and contains detections
-        if result.boxes and len(result.boxes) > 0:
-            class_probs = [f"{result.names[int(cls)]}: {prob:.2f}" for cls, prob in
-                           zip(result.boxes.cls, result.boxes.conf)]
-            class_probs_text = "\n".join(class_probs)
-        else:
-            class_probs_text = ""
+            return out_url
 
-        # Convert BGR to RGB for matplotlib
-        im_array_rgb = cv2.cvtColor(im_array, cv2.COLOR_BGR2RGB)
-
-        # Get image dimensions
-        img_height, img_width, _ = im_array_rgb.shape
-
-        # Calculate proportional font scale and thickness
-        font_scale = img_width / 800.0
-        thickness = int(img_width / 400.0)
-
-        # Annotate image with inference speed
-        text = f"Prediction Speed: {inference_time:.2f} s"
-
-        if class_probs_text:
-            text += f"\n{class_probs_text}"
-
-        # Determine the position to put the text (bottom-left corner)
-        position = (10, img_height - 20 * len(text.split('\n')))
-
-        # Set font
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        color = (255, 0, 0)  # Red color for the text
-
-        # Put the text on the image
-        for i, line in enumerate(text.split('\n')):
-            y = position[1] + i * 20
-            cv2.putText(im_array_rgb, line, (position[0], y), font, font_scale, color, thickness)
-
-        output_image_path_m1 = os.path.join('static/uploads/m1', 'output_image_m1.jpg')
-        cv2.imwrite(output_image_path_m1, cv2.cvtColor(im_array_rgb, cv2.COLOR_RGB2BGR))
-
-        return output_image_path_m1
-    
-def get_prediction_m2(image_file):
-    # Initialize the model
-    model_path = 'models/best_m2_v1.pt'  # Update with your actual path
-    model = YOLO(model_path)
-
-    print(f"Processing {image_file}")
-
-    # Start timing the inference
-    start_time = time.time()
-
-    # Run inference
-    results = model(image_file, conf=0.5, iou=0.6, imgsz=640)
-
-    # Calculate the inference speed
-    inference_time = time.time() - start_time
-
-    # Process results list
-    for result in results:
-        im_array = result.plot()  # plot a BGR numpy array of predictions
-
-        # Extract class probabilities if result.boxes is not None and contains detections
-        if result.boxes and len(result.boxes) > 0:
-            class_probs = [f"{result.names[int(cls)]}: {prob:.2f}" for cls, prob in
-                           zip(result.boxes.cls, result.boxes.conf)]
-            class_probs_text = "\n".join(class_probs)
-        else:
-            class_probs_text = ""
-
-        # Convert BGR to RGB for matplotlib
-        im_array_rgb = cv2.cvtColor(im_array, cv2.COLOR_BGR2RGB)
-
-        # Get image dimensions
-        img_height, img_width, _ = im_array_rgb.shape
-
-        # Calculate proportional font scale and thickness
-        font_scale = img_width / 800.0
-        thickness = int(img_width / 400.0)
-
-        # Annotate image with inference speed
-        text = f"Prediction Speed: {inference_time:.2f} s"
-
-        if class_probs_text:
-            text += f"\n{class_probs_text}"
-
-        # Determine the position to put the text (bottom-left corner)
-        position = (10, img_height - 20 * len(text.split('\n')))
-
-        # Set font
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        color = (255, 0, 0)  # Red color for the text
-
-        # Put the text on the image
-        for i, line in enumerate(text.split('\n')):
-            y = position[1] + i * 20
-            cv2.putText(im_array_rgb, line, (position[0], y), font, font_scale, color, thickness)
-
-        output_image_path_m2 = os.path.join('static/uploads/m2', 'output_image_m2.jpg')
-        cv2.imwrite(output_image_path_m2, cv2.cvtColor(im_array_rgb, cv2.COLOR_RGB2BGR))
-
-        return output_image_path_m2
+    return out_url
 
 
-# if __name__ == "__main--":
-#     print('\n*** Get Image Prediction ***\n')
-    
-#     img = input("\nPlease input an image: ")
-
-#     pre = get_prediction_m1(img)
-
-#     pprint(pre)
+def get_prediction_m1(image_file: str) -> str:
+    return _predict(model_m1, image_file, OUT_M1_FS, OUT_M1_URL)
 
 
-
+def get_prediction_m2(image_file: str) -> str:
+    return _predict(model_m2, image_file, OUT_M2_FS, OUT_M2_URL)
