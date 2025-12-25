@@ -10,13 +10,13 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
     crossorigin="anonymous"
   />
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="d-flex flex-column">
   <div class="header-bar">
-    <img src="../static/logos/abs-logo.png" alt="Left Logo">
+    <img src="{{ url_for('static', filename='logos/abs-logo.png') }}" alt="Left Logo">
     <span class="header-text">Sea-Ice Visual Perception and Risk Management Using Deep Neural Networks</span>
-    <img src="../static/logos/mun-logo.png" alt="Right Logo">
+    <img src="{{ url_for('static', filename='logos/mun-logo.png') }}" alt="Right Logo">
   </div>
 
   <div class="container-fluid text-center flex-grow-1">
@@ -27,7 +27,7 @@
         </button>
         <div class="collapse" id="collapseExample">
           <div class="card card-body no-border">
-            <img class="digram-image" src="../static/diagrams/diagram.svg" alt="Classification Digram">
+            <img class="digram-image" src="/static/diagrams/diagram.svg" alt="Classification Diagram">
           </div>
         </div>
         
@@ -86,7 +86,7 @@
           <div class="prediction-column mt-4">
             <h3>Prediction Result</h3>
             <div class="image-frame">
-              <img src="{{ image_url_m1 }}" alt="Prediction Image M1" onload="hideSpinner('spinnerM1')" />
+              <img src="{{ image_url_m1 }}?v={{ range(1, 1000000) | random }}" alt="Prediction Image M1" onload="hideSpinner('spinnerM1')" />
             </div>
           </div>
           {% endif %}
@@ -146,7 +146,7 @@
           <div class="prediction-column mt-4">
             <h3>Prediction Result</h3>
             <div class="image-frame">
-              <img src="{{ image_url_m2 }}" alt="Prediction Image M2" onload="hideSpinner('spinnerM2')" />
+              <img src="{{ image_url_m2 }}?v={{ range(1, 1000000) | random }}" alt="Prediction Image M2" onload="hideSpinner('spinnerM2')" />
             </div>
           </div>
           {% endif %}

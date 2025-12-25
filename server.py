@@ -8,8 +8,8 @@ import shutil
 app = Flask(__name__)
 
 # Create subdirectories for m1 and m2 in the 'uploads' directory
-UPLOAD_FOLDER_M1 = 'static/uploads/m1'
-UPLOAD_FOLDER_M2 = 'static/uploads/m2'
+UPLOAD_FOLDER_M1 = os.path.join("static", "uploads", "m1")
+UPLOAD_FOLDER_M2 = os.path.join("static", "uploads", "m2")
 os.makedirs(UPLOAD_FOLDER_M1, exist_ok=True)
 os.makedirs(UPLOAD_FOLDER_M2, exist_ok=True)
 
@@ -17,11 +17,28 @@ os.makedirs(UPLOAD_FOLDER_M2, exist_ok=True)
 FILENAME_M1 = 'uploaded_image_m1.jpg'
 FILENAME_M2 = 'uploaded_image_m2.jpg'
 
+OUT_M1_FS = os.path.join(UPLOAD_FOLDER_M1, "output_image_m1.jpg")
+OUT_M2_FS = os.path.join(UPLOAD_FOLDER_M2, "output_image_m2.jpg")
+
+OUT_M1_URL = "/static/uploads/m1/output_image_m1.jpg"
+OUT_M2_URL = "/static/uploads/m2/output_image_m2.jpg"
+
+app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10 MB
+
+ALLOWED_EXT = {"jpg", "jpeg", "png", "webp"}
+
+def allowed(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXT
+
 @app.route('/')
 @app.route('/index')
 def index():
     # Initially, no images are shown
     return render_template('index.html', image_url_m1=None, image_url_m2=None)
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
 
 @app.route('/prediction_m1', methods=['POST'])
 def get_curr_prediction_m1():
@@ -41,14 +58,12 @@ def get_curr_prediction_m1():
         file.save(file_path)
 
         # Pass the file path to the get_prediction_m1 function
-        output_image_path_m1 = get_prediction_m1(file_path)
+        output_image_url_m1 = get_prediction_m1(file_path)
         
         # Check if there's already a prediction result for model m2
-        output_image_path_m2 = os.path.join(UPLOAD_FOLDER_M2, 'output_image_m2.jpg')
-        if not os.path.exists(output_image_path_m2):
-            output_image_path_m2 = None
+        output_image_url_m2 = OUT_M2_URL if os.path.exists(OUT_M2_FS) else None
 
-        return render_template("index.html", image_url_m1=output_image_path_m1, image_url_m2=output_image_path_m2)
+        return render_template("index.html", image_url_m1=output_image_url_m1, image_url_m2=output_image_url_m2)
 
     return redirect(url_for('index'))
 
@@ -70,14 +85,12 @@ def get_curr_prediction_m2():
         file.save(file_path)
 
         # Pass the file path to the get_prediction_m2 function
-        output_image_path_m2 = get_prediction_m2(file_path)
+        output_image_url_m2 = get_prediction_m2(file_path)
 
         # Check if there's already a prediction result for model m1
-        output_image_path_m1 = os.path.join(UPLOAD_FOLDER_M1, 'output_image_m1.jpg')
-        if not os.path.exists(output_image_path_m1):
-            output_image_path_m1 = None
+        output_image_url_m1 = OUT_M1_URL if os.path.exists(OUT_M1_FS) else None
 
-        return render_template("index.html", image_url_m1=output_image_path_m1, image_url_m2=output_image_path_m2)
+        return render_template("index.html", image_url_m1=output_image_url_m1, image_url_m2=output_image_url_m2)
 
     return redirect(url_for('index'))
 
@@ -95,13 +108,9 @@ def reset_m1():
             print(f'Failed to delete {file_path}. Reason: {e}')
 
     # Define the path for the m2 image output before checking existence
-    output_image_path_m2 = os.path.join(UPLOAD_FOLDER_M2, 'output_image_m2.jpg')
+    output_image_url_m2 = OUT_M2_URL if os.path.exists(OUT_M2_FS) else None
     
-    # Check if the m2 image output file exists
-    if not os.path.exists(output_image_path_m2):
-        output_image_path_m2 = None
-    
-    return render_template("index.html", image_url_m2=output_image_path_m2, image_url_m1=None)
+    return render_template("index.html", image_url_m2=output_image_url_m2, image_url_m1=None)
 
 @app.route('/reset_m2', methods=['POST'])
 def reset_m2():
@@ -116,12 +125,9 @@ def reset_m2():
         except Exception as e:
             print(f'Failed to delete {file_path}. Reason: {e}')
 
-    output_image_path_m1 = os.path.join(UPLOAD_FOLDER_M1, 'output_image_m1.jpg')
-    
-    if not os.path.exists(output_image_path_m1):
-        output_image_path_m1 = None
+    output_image_url_m1 = OUT_M1_URL if os.path.exists(OUT_M1_FS) else None
 
-    return render_template("index.html", image_url_m1=output_image_path_m1, image_url_m2=None)
+    return render_template("index.html", image_url_m1=output_image_url_m1, image_url_m2=None)
 
 if __name__ == "__main__":
-    serve(app, host="0.0.0.0", port=8080)
+    serve(app, host="0.0.0.0", port=8080, threads=1)

@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.git/
+static/uploads/
+test_dataset/

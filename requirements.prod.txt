@@ -1,0 +1,13 @@
+Flask==3.0.3
+waitress==3.0.0
+ultralytics==8.2.80
+opencv-python-headless==4.10.0.84
+torch==2.3.0
+torchvision==0.18.0
+torchaudio==2.3.0
+numpy==1.26.4
+Pillow==10.4.0
+PyYAML==6.0.2
+requests==2.32.3
+tqdm==4.66.5
+Werkzeug==3.0.4
